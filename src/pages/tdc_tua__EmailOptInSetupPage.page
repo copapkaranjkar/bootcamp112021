@@ -1,0 +1,1554 @@
+<apex:page controller="tdc_tua.EmailOptInSetupCntrlr" id="page" sidebar="false" showHeader="true">
+<apex:form id="frm" styleClass="form">
+<html>
+ 
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet" />
+    <title>EmailOpt</title>
+    <apex:slds />
+    <style>
+        .slds-scope {
+            margin: 0;
+            padding: 0 !important;
+            box-sizing: border-box;
+            background-color: #eee !important;
+            padding: 0;
+            border: 1px solid #eeeeee;
+        }
+        
+        .slds-scope .logo {
+            width: 100px
+        }
+        
+        .slds-scope .cover {
+            background: #f7f7f7;
+        }
+        
+        .slds-scope .wrapper {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+        
+        .slds-scope label {
+            vertical-align: middle;
+            text-align: right;
+            padding-right: 2rem;
+            font-size: 15px !important;
+            color: #464646 !important;
+        }
+        
+        .slds-scope .slds-form-element__control {
+            display: block;
+        }
+        
+        .slds-scope .wrapper .textarea {
+            resize: none;
+            margin-top: 8px;
+            border-radius: .25rem 0 0 .25rem;
+            background: #fff;
+            border: 1px solid #d8dde6;
+            color: #464646 !important;
+            /*box-shadow: 0px 2px 7px #f3f3f3;*/
+            padding: 8px 0 20px 15px;
+            font-size: 16px;
+        }
+        
+        .slds-scope .wrapper input[type='text'],
+        .slds-scope .wrapper input[type='number'] {
+            border-radius: .25rem 0 0 .25rem;
+            background: #fff;
+            border: 1px solid #d8dde6;
+            color: #464646;
+            font-size: 16px;
+            padding: 8px 1rem;
+            line-height: 0;
+            height: 34px;
+            line-height: 2;
+        }
+        
+        .slds-scope .wrapper input[type='number'] {
+            padding: 0px 1rem;
+            line-height: 2;
+        }
+
+        .slds-scope label.error {
+            color: red !important;
+        }
+    
+        .slds-scope .wrapper .slds-input.error {
+            border-color: #ff6868 !important;
+            background: #ffebeb;
+            color: #ff6868 !important;
+        }
+        
+        .slds-scope .wrapper select {
+            border-radius: .25rem 0 0 .25rem !important;
+            background: #fff;
+            border: 1px solid #d8dde6 !important;
+            color: #464646;
+            padding: 3px 1rem;
+            height: inherit;
+            height: 34px !important;
+        }
+        
+        /*.slds-scope .wrapper select option {
+            height: 48px;
+        }*/
+        
+        .slds-scope span.chack-name {
+            width: 20%;
+            font-size: 15px !important;
+            padding-left: 20px;
+        }
+        
+        .slds-scope .chack {
+            padding-left: 0px;
+        }
+        
+        .slds-scope .btn-cover {
+            text-align: center;
+            padding-top: 23px;
+            padding-bottom: 18px;
+        }
+        
+        .slds-scope .btn {
+            padding: 4px 30px !important;
+            font-size: 15px !important;
+            background: #ff6868 !important;
+            border: none !important;
+            transition: all 0.3s ease-out; 
+            color: #fff !important;
+        }
+        
+        .slds-scope .btn:hover {
+            background: #ff4a4a !important;
+        }
+        
+        .slds-scope .header {
+            text-align: center;
+            font-size: 25px;
+            background-color: #fff;
+            color: #5f5f5f;
+            font-weight: 600;
+            text-transform: uppercase;
+            width: 100%;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            padding: 12px 0px;
+        }
+        
+        .slds-scope .slds-form-element {
+            padding-bottom: 15px;
+            padding-top: 15px;
+        }
+        
+        .slds-scope .slds-checkbox--faux {
+            border: 1px solid #bdbdbd !important;
+        }
+        
+        .slds-scope .wrapper section {
+            width: 100%;
+            padding: 0;
+        }
+        .slds-scope .slds-form{
+            padding: 15px;
+        }
+        
+        .slds-scope .resubscribePanel {
+            display: none !important;
+        }
+        
+        .slds-scope .resubscribePanel.active {
+            display: block !important;
+        }
+        
+        .slds-scope .feedbackPanel {
+            display: none !important;
+        }
+        
+        .slds-scope .feedbackPanel.active {
+            display: block !important;
+        }
+        
+        .slds-scope .alert {
+            padding: 20px;
+            background-color: #6abc6e;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+        }
+        
+        .slds-scope .page-header {
+            background-color: #fff;
+            padding: 0;
+        }
+        
+        .slds-scope .page-title {
+            background-color: #fff;
+            padding: 0;
+            margin-top: 2em;
+        }
+        
+        .slds-scope .page-title h2,
+        .slds-scope .feedback-sec h2,
+        .slds-scope .footer h2,
+        .slds-scope .resubscribe h2,
+        .slds-scope .site h2,
+        .slds-scope .page-header h2 {
+            font-size: 20px;
+            padding: 0.5em 1em;
+            background: #d6d6d6;
+            font-weight: 600;
+            color: #5f5f5f;
+        }
+        
+        .slds-scope .feedback-sec,
+        .slds-scope .resubscribe,
+        .slds-scope .footer,
+        .slds-scope .site {
+            background-color: #fff;
+            padding: 0px;
+            margin-top: 2em;
+        }
+        
+        .slds-scope .site-content {
+            width: calc(100% - 102px) !important;
+        }
+        
+        .slds-scope .site-button {
+            padding: 9px 2.2rem 8px;
+            border: none;
+            font-weight: 600 !important;
+            color: #5f5f5f !important;
+            margin-left: -0.3rem !important;
+            background-color: #bdbdbd;
+            transition: all 0.3s ease-out;
+        }
+        
+        .slds-scope .site-button:hover {
+            background-color: #ff4a4a;
+            color: #fff !important;
+        }
+        
+        .slds-scope .copy-alert .notify__content {
+            padding: 2rem 5rem;
+            border-radius: 6px;
+        }
+        .slds-scope .copy-alert .notify__content.success {
+            background: rgba(41, 162, 46, 0.7)
+        }
+
+        .slds-scope .copy-alert .notify__content.copy {
+            background: rgba(41, 162, 46, 0.7)
+        }
+
+        .slds-scope .copy-alert .notify__content.error {
+                background: rgba(255, 68, 68, 0.7);
+        }
+        
+        .slds-scope .copy-alert {
+            display: none;
+        }
+        
+        .slds-scope .copy-alert .notify_container {
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 10000;
+            text-align: center;
+            margin: 1rem;
+        }
+        
+        .slds-scope .copy-alert .notify_container h2 {
+            color: #fff;
+            font-size: 20px;
+        }
+        
+        @media (min-width: 768px) {
+            .slds-scope label {
+                width: 30%;
+                vertical-align: middle;
+                text-align: right;
+                padding-right: 2rem;
+                font-size: 15px !important;
+                color: #464646 !important;
+            }
+            .slds-scope .slds-form-element__control {
+                width: 66%;
+                display: inline-block;
+            }
+            .slds-scope .wrapper section {
+                padding: 0;
+            }
+            .slds-scope .slds-form{
+                padding: 15px;
+            }
+            .slds-scope .slds-form_horizontal{
+                text-align: left;
+            }
+        }
+
+        .img-div {
+            width: 250px;
+            background: #f3f3f3;
+            height: 100px;
+            margin-bottom: 0rem;
+            border: 1px dashed #ddd;
+            display: block;
+            position: relative;
+        }
+
+        .img-div a {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: rgba(177, 171, 171, 0.48);
+            width: 36px;
+            height: 36px;
+            font-size: 20px;
+            line-height: 36px;
+            padding: 1px 13px;
+            color: #fff;
+        }
+
+        .img-div a:hover,
+        .img-div a:focus,
+        .img-div a:active,
+        .img-div a:visited {
+            text-decoration: none;
+            background: #666;
+            color: #fff;
+        }
+        .upload-img{
+            max-width: 250px;
+            max-height: 100px;
+        }
+        .cke_top{
+            border-bottom: none;
+        }
+        .cke_chrome{
+            border: 1px solid #d8dde6;
+            box-shadow: none;
+        }
+        .no-spinners {
+          
+        }
+
+        .no-spinners::-webkit-outer-spin-button,
+        .no-spinners::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        
+        .file{
+            font-size: 15px !important;
+        }
+        .slds-scope .slds-form_horizontal .slds-form-element>.slds-form-element__label{
+            position: relative;
+            top: 0;
+        }
+        
+        .trial .input_trial{
+            pointer-events: none;
+            background: #dedede !important;
+        }
+        .trial .close_btn{
+            display: none;
+        }
+        
+        .msg_trial{
+            display: none;
+            color: #ff6868 !important;
+        }
+
+        .trial #imgInp {
+            pointer-events: none;
+        }
+
+        .trial .msg_trial {
+            display: block;
+            color: #ff6868 !important;
+        }
+        .input_trial {
+            pointer-events: auto;
+        }
+        .close_btn{
+            display: block;
+        }
+        /*.slds-scope .slds-select{
+            height: 34px !important;
+        }*/
+        .slds-scope .slds-button_brand{padding: 0px 15px !important;}
+        
+        .wraper{
+        height: 500px;
+        max-width: 600px;
+        margin: auto;
+        }
+    </style>
+</head>
+
+<body class="slds-scope" > 
+<apex:outputPanel rendered="{!isProfessional}" >
+<div class="wraper">
+<header class="site site-masthead slds-grid slds-wrap" style="">
+    <div class="site-masthead-title slds-has-flexi-truncate slds-align-middle">
+
+    <h1 style="text-align: center;font-size: 20px;font-weight: 100; padding:5%" >Subscribe Setup is not available in Professional Edition</h1></div></header>
+</div>
+</apex:outputPanel> 
+   <apex:outputPanel rendered="{!!isProfessional}" >
+   <div class="slds-size--1-of-1 slds-text-align_center">
+        <apex:outputPanel rendered="{!If(trialperiod == true ,false,true)}">
+            <div class="slds-p-vertical_large">
+                <input class="slds-button slds-button_neutral btn" type="button" value="Activate The App" onclick="extendTrial();"></input>
+            </div>
+            <div class="slds-p-bottom_large">
+                <p style="font-size: 1rem;"><apex:outputText value="{!showMessage}"/></p>
+            </div>
+        </apex:outputPanel>
+    </div>
+
+
+    <apex:outputPanel rendered="{! If(trialperiod == true ,true,false) }"> 
+ 
+        <div class="slds-size--1-of-1">
+            <div class="slds-grid">
+                <div class="slds-col header">
+                    <apex:image url="{!URLFOR($Resource.tdc_tua__Optout_SR, 'img/logo.png')}" styleClass="logo" />
+                </div>
+                <div class="slds-col header">
+                    Setup Page
+                </div>
+            </div>
+        </div>
+        <!-- <div class="slds-size--1-of-1 slds-col--padded">
+        <div class="alert">
+        <strong>Success!</strong> Indicates a successful or positive action.
+        </div>
+        </div> -->
+        <div class="wrapper slds-col--padded">
+            <div class="slds-size--1-of-1 btn-cover">
+                <!-- <apex:commandButton action="{!submit}" value="Save"  /> -->
+                <!-- <apex:commandButton action="{!submitandpreview}" value="Save & Preview" /> -->
+                <input class="slds-button slds-button--brand btn save" type="button" value="Save" />
+                <input class="slds-button slds-button--brand btn saveAndPreview" type="button" value="Save & Preview" />
+                <input type="button" class="slds-button slds-button--brand btn resetDefaults" value="Reset Defaults" />
+            </div>
+
+            <section class="page-header {!if(status == 'Trial' , 'trial', '')}">
+                <h2>Header Section</h2>
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element logo-image" style="display: none">
+                        <label class="slds-form-element__label">Logo Image</label>
+                        <div class="slds-form-element__control">
+                            <!-- <input type="file" onchange="encodeImageFileAsURL(this)" /> -->
+                            <span class="img-div" style="display: none;">
+                                <img id="img-wrapper" class="upload-img" src="{!siturl}/servlet/servlet.FileDownload?file={!URLENCODE(objattach.Id)}" alt="your image" />
+                                <a href="#" class="close_btn">X</a>
+                            </span>
+                            <div class="msg_trial">You can not edit this field in trial period.</div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="slds-form-element upload-image" style="display: none">
+                        <label class="slds-form-element__label">Upload Logo</label>
+                        <div class="slds-form-element__control file">
+                            <input type='file' id="imgInp" />
+                            <div class="msg_trial">You can not edit this field in trial period.</div>
+                            <div style="display: none" class="logo-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Title Text</label>
+                        <div class="slds-form-element__control">
+                            <input type="text" class="slds-input input_trial" id="Header_titleText" value="{!objsetup.Header_Title__c}" name="Header_titleText" />
+                            <div class="msg_trial">You can not edit this field in trial period.</div>
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Title Color</label>
+                        <div class="slds-form-element__control">
+                            <input class="color-piker jscolor {hash:true}" type="text" id="Header_titleFontColor" value="{!objsetup.Header_Title_Color__c}" name="Header_titleFontColor" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Title Font Size</label>
+                        <div class="slds-form-element__control">
+                            <input type="number" class="slds-input no-spinners"  id="Header_titleFontSize" value="{!objsetup.Header_Font_Size__c}" name="Header_titleFontSize" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Background Color</label>
+                        <div class="slds-form-element__control">
+                            <input class="color-piker jscolor {hash:true}" type="text" id="Header_backgroundColor" value="{!objsetup.Header_Background_Color__c}"  name="Header_backgroundColor" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Button Text</label>
+                        <div class="slds-form-element__control">
+                            <input type="text" class="slds-input" id="Header_buttonText" value="{!objsetup.Header_Button_Text__c}" name="Header_buttonText" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Button Font Size</label>
+                        <div class="slds-form-element__control">
+                            <input type="number" min="1" class="slds-input no-spinners" id="Header_buttonFontSize" value="{!objsetup.Header_Button_Font_Size__c}" name="Header_buttonFontSize" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Button Font Color</label>
+                        <div class="slds-form-element__control">
+                            <input class="color-piker jscolor {hash:true}" type="text" id="Header_buttonFontColor" value="{!objsetup.Header_Button_Font_Color__c}" name="Header_buttonFontColor" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Button Background Color</label>
+                        <div class="slds-form-element__control">
+                            <input class="color-piker jscolor {hash:true}" type="text" id="Header_buttonBackgroundColor" value="{!objsetup.Header_Button_Background_Color__c}" name="Header_buttonBackgroundColor" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Button Link</label>
+                        <div class="slds-form-element__control">
+                            <input type="text" class="slds-input" id="Header_buttonURL" value="{!objsetup.Header_Button_Link__c}" name="Header_buttonURL" />
+                            <p class="help-text">
+                                Example: http://google.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="site">
+                <h2>Set Page Font Family</h2>
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Title Font Family {!objsetup.Title_Font_Family__c}</label>
+                        <div class="slds-form-element__control">
+                            <select class="slds-select" id="Title_fontFamily" name="Title_fontFamily">
+                                <option value="Arial" style="font-family: 'Arial', cursive">Arial</option>
+                                <option value="Bad Script" style="font-family: 'Bad Script', cursive">Bad Script</option>
+                                <option value="Cabin" style="font-family: 'Cabin', cursive">Cabin</option>
+                                <option value="Comfortaa" style="font-family: 'Comfortaa', cursive">Comfortaa</option>
+                                <option value="Dancing Script" style="font-family: 'Dancing Script', cursive">Dancing Script</option>
+                                <option value="Lobster" style="font-family: 'Lobster', cursive">Lobster</option>
+                                <option value="Open Sans" style="font-family: 'Open Sans', cursive">Open Sans</option>
+                                <option value="PT Serif" style="font-family: 'PT Serif', cursive">PT Serif</option>
+                                <option value="Raleway" style="font-family: 'Raleway', cursive">Raleway</option>
+                                <option value="Roboto" style="font-family: 'Roboto', cursive">Roboto</option>
+                                <option value="Ubuntu" style="font-family: 'Ubuntu', cursive">Ubuntu</option>
+                            </select>
+                            <script type="text/javascript">
+                                
+                                document.getElementById("Title_fontFamily").value ="{!JSENCODE(objsetup.Title_Font_Family__c)}";
+                                document.getElementById("Title_fontFamily").style.fontFamily = "{!JSENCODE(objsetup.Title_Font_Family__c)}";
+                            </script>
+                            <!-- <input type="text" class="slds-input"  /> -->
+                        </div>
+                    </div>
+
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Body Font Family</label>
+                        <div class="slds-form-element__control">
+                            <select class="slds-select" id="Body_fontFamily"  name="Body_fontFamily">
+                                <option value="Arial" style="font-family: 'Arial', cursive">Arial</option>
+                                <option value="Bad Script" style="font-family: 'Bad Script', cursive">Bad Script</option>
+                                <option value="Cabin" style="font-family: 'Cabin', cursive">Cabin</option>
+                                <option value="Comfortaa" style="font-family: 'Comfortaa', cursive">Comfortaa</option>
+                                <option value="Dancing Script" style="font-family: 'Dancing Script', cursive">Dancing Script</option>
+                                <option value="Lobster" style="font-family: 'Lobster', cursive">Lobster</option>
+                                <option value="Open Sans" style="font-family: 'Open Sans', cursive">Open Sans</option>
+                                <option value="PT Serif" style="font-family: 'PT Serif', cursive">PT Serif</option>
+                                <option value="Raleway" style="font-family: 'Raleway', cursive">Raleway</option>
+                                <option value="Roboto" style="font-family: 'Roboto', cursive">Roboto</option>
+                                <option value="Ubuntu" style="font-family: 'Ubuntu', cursive">Ubuntu</option>
+                            </select>
+                            <script type="text/javascript">
+                                document.getElementById("Body_fontFamily").value ="{!JSENCODE(objsetup.Body_Font_Family__c)}";
+                                document.getElementById("Body_fontFamily").style.fontFamily = "{!JSENCODE(objsetup.Body_Font_Family__c)}";
+                                $(function(){
+                                    // Title font family
+
+                                    $('body').on('change', '#Title_fontFamily', function(){
+                                        var TitlefontFamilyName = $(this).find('option:selected').css('fontFamily');
+                                        $('#Title_fontFamily').css('font-family', TitlefontFamilyName);
+                                    }) 
+
+                                    // Body Font Family
+
+                                    $('body').on('change', '#Body_fontFamily', function(){
+                                        var BodyfontFamilyName = $(this).find('option:selected').css('fontFamily');
+                                        $('#Body_fontFamily').css('font-family', BodyfontFamilyName);
+                                    }) 
+                                })
+                            </script>
+                            <!-- <input type="text" class="slds-input" id="Body_fontFamily" value="{!objsetup.Body_Font_Family__c}" name="Body_fontFamily" /> -->
+                        </div>
+                    </div>
+                </div>
+            </section>  
+
+            <section class="page-title">
+                <h2>Subscribe Section</h2>
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Content Text</label>
+                        <div class="slds-form-element__control">
+                            <!-- <input type="text" class="slds-input" id="Unsubscribe_contentText" value="{!objsetup.tdc_tua__Content__c}" /> -->
+                            <apex:inputtextarea label="RichText"  richtext="true" value="{!objsetup.tdc_tua__Content__c}" id="Unsubscribe_contentText" cols="100" rows="15"/>
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Content Font Size</label>
+                        <div class="slds-form-element__control">
+                            <input type="number" min="1" class="slds-input no-spinners" id="Unsubscribe_contentFontSize" value="{!objsetup.Content_Font_Size__c}" name="Unsubscribe_contentFontSize" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Content Color</label>
+                        <div class="slds-form-element__control">
+                            <input class="color-piker jscolor {hash:true}" type="text" id="Unsubscribe_contentFontColor" value="{!objsetup.Content_Text_Color__c}" name="Unsubscribe_contentFontColor" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Background Color</label>
+                        <div class="slds-form-element__control">
+                            <input class="color-piker jscolor {hash:true}" type="text" id="Unsubscribe_backgroundColor" value="{!objsetup.Unsubscribe_Background_Color__c}" name="Unsubscribe_backgroundColor" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Heading text</label>
+                        <div class="slds-form-element__control">
+                            <input type="text" class="slds-input" id="Unsubscribe_headingText" value="{!objsetup.Unsubscribe_Heading_Text__c}" name="Unsubscribe_headingText" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Heading Color</label>
+                        <div class="slds-form-element__control">
+                            <input class="color-piker jscolor {hash:true}" type="text" id="Unsubscribe_headingFontColor" value="{!objsetup.Unsubscribe_heading_Font_Color__c}" name="Unsubscribe_headingFontColor" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Heading Font Size</label>
+                        <div class="slds-form-element__control">
+                            <input type="number" min="1" class="slds-input no-spinners" id="Unsubscribe_headingFontSize" value="{!objsetup.Unsubscribe_heading_Font_Size__c}" name="Unsubscribe_headingFontSize" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Subheading Text</label>
+                        <div class="slds-form-element__control">
+                            <input type="text" class="slds-input" id="Unsubscribe_subHeadingText" value="{!objsetup.Unsubscribe_Subheading_Text__c}" name="Unsubscribe_subHeadingText" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Subheading Color</label>
+                        <div class="slds-form-element__control">
+                            <input class="color-piker jscolor {hash:true}" type="text" id="Unsubscribe_subHeadingFontColor" value="{!objsetup.Unsubscribe_Subheading_Font_Color__c}" name="Unsubscribe_subHeadingFontColor" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Subheading Font Size</label>
+                        <div class="slds-form-element__control">
+                            <input type="number" min="1" class="slds-input no-spinners" id="Unsubscribe_subHeadingFontSize" value="{!objsetup.Unsubscribe_Subheading_Font_Size__c}" name="Unsubscribe_subHeadingFontSize" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Button Text</label>
+                        <div class="slds-form-element__control">
+                            <input type="text" class="slds-input" id="Unsubscribe_buttonText" value="{!objsetup.Unsubscribe_Button_Text__c}" name="Unsubscribe_buttonText" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Button Background Color</label>
+                        <div class="slds-form-element__control">
+                            <input class="color-piker jscolor {hash:true}" type="text" id="Unsubscribe_buttonBackgroundColor" value="{!objsetup.Unsubscribe_Button_Color__c}" name="Unsubscribe_buttonBackgroundColor" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Button Font Color</label>
+                        <div class="slds-form-element__control">
+                            <input class="color-piker jscolor {hash:true}" type="text" id="Unsubscribe_buttonFontColor" value="{!objsetup.Unsubscribe_Font_Color__c}" name="Unsubscribe_buttonFontColor" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Button Font Size</label>
+                        <div class="slds-form-element__control">
+                            <input type="number" min="1" class="slds-input no-spinners" id="Unsubscribe_buttonFontSize" value="{!objsetup.Unsubscribe_Font_Size__c}" name="Unsubscribe_buttonFontSize" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- <section class="resubscribe">
+                <h2>Resubscribe Section</h2>
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-size--1-of-1">
+                        <div class="slds-form-element commn">
+                            <label class="slds-form-element__label">Resubscribe</label>
+                            <span class="slds-checkbox chack-box">
+                                <label class="slds-checkbox__label chack">
+                                    <input id="Resubscribe_require" type="checkbox" value="{!objsetup.Resubscribe__c}" class="resubscribeCheckbox" />
+                                    <span class="slds-checkbox--faux"></span>
+                                </label>
+                            </span>
+                             <script>
+                                $(function() {
+                                    var resubscribeSec = {!IF(objsetup.Resubscribe__c, "true", "false")};
+                                    if(resubscribeSec == true) {
+                                        $("#Resubscribe_require").prop("checked", true);
+                                    } else {
+                                        $("#Resubscribe_require").prop("checked", false);
+                                    }
+                                })        
+                            </script>
+                        </div>
+                    </div>
+                    <section class="resubscribePanel">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Background Color</label>
+                            <div class="slds-form-element__control">
+                                <input class="color-piker jscolor {hash:true}" type="text" id="Resubscribe_backgroundColor" value="{!objsetup.Resubscribe_Background_Color__c}" name="Resubscribe_backgroundColor" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Heading Text</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" class="slds-input" id="Resubscribe_headingText" value="{!objsetup.Resubscribe_Heading_Text__c}" name="Resubscribe_headingText" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Heading Color</label>
+                            <div class="slds-form-element__control">
+                                <input class="color-piker jscolor {hash:true}" type="text" id="Resubscribe_headingFontColor" value="{!objsetup.Resubscribe_Heading_Font_Color__c}" name="Resubscribe_headingFontColor" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Heading Font Size</label>
+                            <div class="slds-form-element__control">
+                                <input type="number" min="1" class="slds-input no-spinners" id="Resubscribe_headingFontSize" value="{!objsetup.Resubscribe_Heading_Font_Size__c}" name="Resubscribe_headingFontSize" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Subheading Text</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" class="slds-input" id="Resubscribe_subHeadingText" value="{!objsetup.Resubscribe_Subheading_Text__c}" name="Resubscribe_subHeadingText" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Subheading Color</label>
+                            <div class="slds-form-element__control">
+                                <input class="color-piker jscolor {hash:true}" type="text" id="Resubscribe_subHeadingFontColor" value="{!objsetup.Resubscribe_Subheading_Font_Color__c}" name="Resubscribe_subHeadingFontColor" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Subheading Font Size</label>
+                            <div class="slds-form-element__control">
+                                <input type="number" min="1" class="slds-input no-spinners" id="Resubscribe_subHeadingFontSize" value="{!objsetup.Resubscribe_Subheading_Font_Size__c}" name="Resubscribe_subHeadingFontSize" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Button Text</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" class="slds-input" id="Resubscribe_buttonText" value="{!objsetup.Resubscribe_button_Text__c}" name="Resubscribe_buttonText" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Button Font Color</label>
+                            <div class="slds-form-element__control">
+                                <input class="color-piker jscolor {hash:true}" type="text" id="Resubscribe_buttonFontColor" value="{!objsetup.Resubscribe_Font_Color__c}" name="Resubscribe_buttonFontColor" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Button Font Size</label>
+                            <div class="slds-form-element__control">
+                                <input type="number" min="1" class="slds-input no-spinners" id="Resubscribe_buttonFontSize" value="{!objsetup.Resubscribe_Font_Size__c}" name="Resubscribe_buttonFontSize" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Button Background Color</label>
+                            <div class="slds-form-element__control">
+                                <input class="color-piker jscolor {hash:true}" type="text" id="Resubscribe_buttonBackgroundColor" value="{!objsetup.Resubscribe_Button_Color__c}" name="Resubscribe_buttonBackgroundColor" />
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </section> -->
+            <!--<section class="feedback-sec">
+                <h2>Feedback Section</h2>
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-size--1-of-1">
+                        <div class="slds-form-element commn">
+                            <label class="slds-form-element__label">Is Feedback Required?</label>
+                            <span class="slds-checkbox chack-box">
+                                <label class="slds-checkbox__label chack">
+                                    <input type="checkbox" id="Feedback_require" checked="false" class="feedbackCheckbox"/>
+                                    <span class="slds-checkbox--faux"></span>
+                                </label>
+                                <script>
+                                    $(function() {
+                                        var isFeedbackReq = {!IF(objsetup.Is_Feedback_Required__c, "true", "false")}; 
+                                        if(isFeedbackReq == true) {
+                                            $("#Feedback_require").prop("checked", true);
+                                        } else {
+                                            $("#Feedback_require").prop("checked", false);
+                                        }
+                                    })        
+                                </script>
+                            </span>
+                        </div>
+                    </div>
+                     <section class="feedbackPanel">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Reason For Unsubscribe</label>
+                            <div class="slds-form-element__control">
+                                <textarea class="textarea slds-textarea" id="Feedback_unsubscribeReason" name="Feedback_unsubscribeReason">{!objsetup.Reason_For_Unsubscribe__c}</textarea>
+                                <p class="help-text">
+                                    Please write each option with comma separated(example: reason one, reason two).
+                                </p>
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Background Color</label>
+                            <div class="slds-form-element__control">
+                                <input class="color-piker jscolor {hash:true}" type="text" id="Feedback_backgroundColor" value="{!objsetup.Feedback_Background_Color__c}" name="Feedback_backgroundColor" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Heading Text</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" class="slds-input" id="Feedback_headingText" value="{!objsetup.Feedback_Heading_Text__c}" name="Feedback_headingText" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Heading Color</label>
+                            <div class="slds-form-element__control">
+                                <input class="color-piker jscolor {hash:true}" type="text" id="Feedback_headingFontColor" value="{!objsetup.Feedback_Heading_Font_Color__c}" name="Feedback_headingFontColor" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Heading Font Size</label>
+                            <div class="slds-form-element__control">
+                                <input type="number" min="1" class="slds-input no-spinners" id="Feedback_headingFontSize" value="{!objsetup.Feedback_Heading_Font_Size__c}" name="Feedback_headingFontSize" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Subheading Text</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" class="slds-input" id="Feedback_subHeadingText" value="{!objsetup.Feedback_Subheading_Text__c}" name="Feedback_subHeadingText" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Subheading Color</label>
+                            <div class="slds-form-element__control">
+                                <input class="color-piker jscolor {hash:true}" type="text" id="Feedback_subHeadingFontColor" value="{!objsetup.Feedback_Subheading_Font_Color__c}" name="Feedback_subHeadingFontColor" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Subheading Font Size</label>
+                            <div class="slds-form-element__control">
+                                <input type="number" min="1" class="slds-input no-spinners" id="Feedback_subHeadingFontSize" value="{!objsetup.Feedback_Subheading_Font_Size__c}" name="Feedback_subHeadingFontSize" />
+                            </div>
+                        </div> -->
+                        <!--<div class="slds-form-element">
+                            <label class="slds-form-element__label">Button Text</label>
+                            <div class="slds-form-element__control">
+                                <input type="text" class="slds-input" id="Feedback_buttonText" value="{!objsetup.Feedback_Button_Text__c}" name="Feedback_buttonText" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Button Font Size</label>
+                            <div class="slds-form-element__control">
+                                <input type="number" min="1" class="slds-input" id="Feedback_buttonFontSize" value="{!objsetup.Feedback_Button_Font_Size__c}" name="Feedback_buttonFontSize" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Button Font Color</label>
+                            <div class="slds-form-element__control">
+                                <input class="color-piker jscolor {hash:true}" type="text" id="Feedback_buttonFontColor" value="{!objsetup.Feedback_Button_Font_Color__c}" name="Feedback_buttonFontColor" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label">Button Background Color</label>
+                            <div class="slds-form-element__control">
+                                <input class="color-piker jscolor {hash:true}" type="text" id="Feedback_buttonBackgroundColor" value="{!objsetup.Feedback_Button_Background_Color__c}" name="Feedback_buttonBackgroundColor" />
+                            </div>
+                        </div>-->
+                   <!--  </section>
+                </div>
+            </section> -->
+            <section class="footer">
+                <h2>Footer</h2>
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Content</label>
+                        <div class="slds-form-element__control">
+                            <input type="text" class="slds-input" id="Footer_content" value="{!objsetup.Footer_Content__c}" name="Footer_content" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Font Size</label>
+                        <div class="slds-form-element__control">
+                            <input type="number" min="1" class="slds-input no-spinners" id="Footer_fontSize" value="{!objsetup.Footer_Font_Size__c}" name="Footer_fontSize" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Font Color</label>
+                        <div class="slds-form-element__control">
+                            <input class="color-piker jscolor {hash:true}" type="text" id="Footer_fontColor" value="{!objsetup.Footer_Font_Color__c}" name="Footer_fontColor" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Background Color</label>
+                        <div class="slds-form-element__control">
+                            <input class="color-piker jscolor {hash:true}" type="text" id="Footer_backgroundColor" value="{!objsetup.Footer_Background_Color__c}" name="Footer_backgroundColor" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="site">
+                <h2>Site</h2>
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Site URL :</label>
+                        <div class="slds-form-element__control">
+                            <input type="text" class="slds-input" id="SiteURL" onblur="generateUrl();" value="{!siturl}" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Site Contact URL</label>
+                        <div class="slds-form-element__control">
+                            <input class="site-content slds-input" type="text" id="urlcontact" readonly="true" value="{!conurl}" />
+                            <input class="site-button copy-btn" type="button" value="Copy" id="copycon" disabled="true" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Site Lead URL</label>
+                        <div class="slds-form-element__control">
+                            <input class="site-content slds-input" type="text" id="urllead" readonly="true" value="{!leadurl}" />
+                            <input class="site-button copy-btn" type="button" value="Copy" id="copylead" disabled="true" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Site Person Account URL</label>
+                        <div class="slds-form-element__control">
+                            <input class="site-content slds-input" type="text" id="urlaccount" readonly="true" value="{!accurl}" />
+                            <input class="site-button copy-btn" type="button" value="Copy" id="copyacc" disabled="true" />
+                        </div>
+                    </div>
+                    
+
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Contact Field:</label>
+                        <div class="slds-form-element__control">
+                            <apex:selectList id="ContactField" value="{!selectedConfld}" size="1" styleClass="slds-select">
+                                <apex:selectOptions value="{!checkboxconfields}"/>
+                            </apex:selectList>
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">Lead Field:</label>
+                        <div class="slds-form-element__control">
+                            <apex:selectList id="LeadField" value="{!selectedledfld}" size="1" styleClass="slds-select">
+                                <apex:selectOptions value="{!checkboxleadfields}"/>
+                            </apex:selectList>
+                        </div>
+                    </div>
+                      <div class="slds-form-element">
+                        <label class="slds-form-element__label">Person Account Field:</label>
+                        <div class="slds-form-element__control">
+                            <apex:selectList id="AccountField" value="{!selectedAccfld}" size="1" styleClass="slds-select">
+                                <apex:selectOptions value="{!checkboxaccfields}"/>
+                            </apex:selectList>
+                        </div>
+                    </div>
+                </div>
+            </section> 
+            
+            <section class="site">
+                <h2>App Status</h2>
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+
+                    <div class="slds-text-align_center">
+                        <apex:outputText value="{!status}" /> period expire on&nbsp;
+                        <strong><apex:outputText value="{0,date,MM/dd/yy}"> <apex:param value="{!appExpireDate}" /></apex:outputText> </strong>
+                        &nbsp;
+                        <input class="slds-button slds-button_brand" type="button" value="Renew" onclick="extendTrial();"></input>
+                    </div>
+                    </div>
+                </div>
+            </section>  
+            
+            <div class="slds-size--1-of-1 btn-cover">
+                <!-- <apex:commandButton action="{!submit}" value="Save"  /> -->
+                <!-- <apex:commandButton action="{!submitandpreview}" value="Save & Preview" /> -->
+                <input class="slds-button slds-button--brand btn save" type="button" value="Save" />                
+                <input class="slds-button slds-button--brand btn saveAndPreview" type="button" value="Save & Preview"/>
+                <input type="button" class="slds-button slds-button--brand btn resetDefaults" value="Reset Defaults" />
+            </div>
+        </div>
+        <div class="copy-alert">
+            <div class="notify_container">
+                <div class="notify__content">
+                    
+                </div>
+            </div>
+        </div>
+   </apex:outputPanel>
+    <apex:includeScript value="{!URLFOR($Resource.tdc_tua__Optout_SR, 'js/jquery.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.tdc_tua__Optout_SR, 'js/jscolor.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.tdc_tua__Optout_SR, 'js/jquery.validate.js')}"/>
+
+    <script>
+        var validationRules = {
+            //Id(s) of header fields 
+            // Header_logo : "",
+            //Header_backgroundColor                        : {required: true, minlength},
+            Title_fontFamily                                : {required: true},
+            Body_fontFamily                                 : {required: true},
+            Header_titleText                                : {maxlength: 255},
+            //Header_titleFontColor                         : "required",
+            Header_titleFontSize                            : {required: true, range: [1, 60]},
+            Header_buttonText                               : {maxlength: 50},
+            Header_buttonFontSize                           : {required: true, range: [1, 60]},
+            //Header_buttonFontColor                        : "required",
+            //Header_buttonBackgroundColor                  : "required",
+            Header_buttonURL                                : {url: true},
+            //Id(s) of footer fields 
+            //Footer_backgroundColor                        : "required",
+            Footer_content                                  : {maxlength: 255},
+            Footer_fontSize                                 : {required: true, range: [1, 60]},
+            //Footer_fontColor                              : "required",
+            //Id(s) of feedback section fields 
+            //Feedback_backgroundColor                      : "required",
+            Feedback_headingText                            : {maxlength: 255},
+            //Feedback_headingFontColor                     : "required",
+            Feedback_headingFontSize                        : {required: true, range: [1, 60]},
+            Feedback_subHeadingText                         : {maxlength: 255},
+            //Feedback_subHeadingFontColor                  : "required",
+            Feedback_subHeadingFontSize                     : {required: true, range: [1, 60]},
+            //Feedback_buttonText                             : {maxlength: 50},
+            //Feedback_buttonFontSize                         : {required: true, range: [1, 60]},
+            //Feedback_buttonFontColor                      : "required",
+            //Feedback_buttonBackgroundColor                : "required",
+            Feedback_unsubscribeReason                      : {maxlength: 255},
+            //Id(s) of resubscribe section fields 
+            //Resubscribe_backgroundColor                   : "required",
+            Resubscribe_headingText                         : {maxlength: 255},
+            Resubscribe_headingFontSize                     : {required: true, range: [1, 60]},
+            //Resubscribe_headingFontColor                  : "required",
+            Resubscribe_subHeadingText                      : {maxlength: 255},
+            //Resubscribe_subHeadingFontColor               : "required",
+            Resubscribe_subHeadingFontSize                  : {required: true, range: [1, 60]},
+            Resubscribe_buttonText                          : {maxlength: 50},
+            //Resubscribe_buttonFontColor                   : "required",
+            Resubscribe_buttonFontSize                      : {required: true, range: [1, 60]},
+            //Resubscribe_buttonBackgroundColor             : "required",
+            //Id(s) of unsubscribe section fields 
+            //Unsubscribe_backgroundColor                   : "required",
+            Unsubscribe_headingText                         : {maxlength: 255},
+            //Unsubscribe_headingFontColor                  : "required",
+            Unsubscribe_headingFontSize                     : {required: true, range: [1, 60]},
+            Unsubscribe_subHeadingText                      : {maxlength: 255},
+            //Unsubscribe_subHeadingFontColor               : "required",
+            Unsubscribe_subHeadingFontSize                  : {required: true, range: [1, 60]},
+            Unsubscribe_contentText                         : {maxlength: 255},
+            //Unsubscribe_contentFontColor                  : "required",
+            Unsubscribe_contentFontSize                     : {required: true, range: [1, 60]},
+            Unsubscribe_buttonText                          : {maxlength: 255},
+            Unsubscribe_buttonFontSize                      : {required: true, range: [1, 60]},
+            //Unsubscribe_buttonFontColor                   : "required",
+            //Unsubscribe_buttonBackgroundColor             : "required"
+        };
+
+        $(".form").validate({
+          rules: validationRules
+        })
+
+
+
+        var config = {
+            notificationTime    : 2000,
+            successMessage      : "Save Successfully!",
+            errorMessage        : "There is some error please reload the page and try again.",
+            copyMessage         : "Copied to clipboard Successfully!",
+            previewPageLink     : "/apex/EmailOptInPage",
+            previewPageTarget   : "_self"
+        }
+
+        var logoImage = '{!JSENCODE(file)}';
+            logoImage = logoImage.replace('data:image/png;base64,', '');
+            logoImage = logoImage.replace('data:image/jpeg;base64,', '');
+            logoImage = logoImage.replace('data:image/jpg;base64,', '');
+            logoImage = logoImage.replace('data:image/gif;base64,', '');
+        if(logoImage != "") {
+            $(".logo-image").show();
+        } else {
+            $(".upload-image").show();
+        }
+
+        //console.log(logoImage);
+
+        var defaultObject = {
+            //Id(s) of header fields 
+            // Header_logo : "",
+            Title_fontFamily: "Bad Script",
+            Body_fontFamily: "Open Sans",
+            Header_backgroundColor : "#fbfbfb",
+            Header_titleText : "COMPANY NAME",
+            Header_titleFontColor : "#666666",
+            Header_titleFontSize : "32",
+            Header_buttonText : "Go To Site",
+            Header_buttonFontSize : "15",
+            Header_buttonFontColor : "#ffffff",
+            Header_buttonBackgroundColor : "#ff6868",
+            Header_buttonURL : "",
+            //Id(s) of footer fields 
+            Footer_backgroundColor : "#fbfbfb",
+            Footer_content : "© All rights reserved. 2017",
+            Footer_fontSize : "16",
+            Footer_fontColor : "#666666",       
+            //Id(s) of feedback section fields 
+            // Feedback_require : true,
+            // Feedback_backgroundColor : "#efefef",
+            // Feedback_headingText : "Got few seconds",
+            // Feedback_headingFontColor : "#333333",
+            // Feedback_headingFontSize : "30",
+            // Feedback_subHeadingText : "Tell us what we did wrong?",
+            // Feedback_subHeadingFontColor : "#333333",
+            // Feedback_subHeadingFontSize : "36",
+            /*Feedback_buttonText : "Submit Feedback",
+            Feedback_buttonFontSize : "20",
+            Feedback_buttonFontColor : "#ffffff",
+            Feedback_buttonBackgroundColor : "#ff6868",*/
+            //Feedback_unsubscribeReason : "",
+            //Id(s) of resubscribe section fields 
+            // Resubscribe_require : true,
+            // Resubscribe_backgroundColor : "#fefefe",
+            // Resubscribe_headingText : "Unsubscribed by mistake!",
+            // Resubscribe_headingFontSize : "30",
+            // Resubscribe_headingFontColor : "#333333",
+            // Resubscribe_subHeadingText : "Want to give us second chance?",
+            // Resubscribe_subHeadingFontColor : "#333333",
+            // Resubscribe_subHeadingFontSize : "36",
+            // Resubscribe_buttonText : "Subscribe",
+            // Resubscribe_buttonFontColor : "#ffffff",
+            // Resubscribe_buttonFontSize : "20",
+            // Resubscribe_buttonBackgroundColor : "#ff8080",Subscribe
+            //Id(s) of unsubscribe section fields 
+            Unsubscribe_backgroundColor : "#efefef",
+            Unsubscribe_headingText : "Do you wana leave us and go, seriously?",
+            Unsubscribe_headingFontColor : "#333333",
+            Unsubscribe_headingFontSize : "30",
+            Unsubscribe_subHeadingText : "",
+            Unsubscribe_subHeadingFontColor : "#333333",
+            Unsubscribe_subHeadingFontSize : "36",
+            Unsubscribe_contentText : "<p>We hate GoodByes - but if you have a change of heart, we'll always be here with great updates/offers/ideas to share.<\/p><p>Please click the unsubscribe button below. Please note, it may take some time to process your request. And don't forget you can always come back whenever you want.<\/p>",
+            Unsubscribe_contentFontColor : "#888888",
+            Unsubscribe_contentFontSize : "18",
+            Unsubscribe_buttonText : "Subscribe",
+            Unsubscribe_buttonFontSize : "20",
+            Unsubscribe_buttonFontColor : "#ffffff",
+            Unsubscribe_buttonBackgroundColor : "#ff8080",
+            Logo_base64 : ""
+        };
+
+
+
+        //function save() {
+        $("body").on("click", ".save", function() {
+            var contactfld = document.getElementById('{!$Component.ContactField}').value,
+                leadfld = document.getElementById('{!$Component.LeadField}').value,
+                accountfld = document.getElementById('{!$Component.AccountField}').value;
+            
+            generateUrl();
+            var ValidForm = $(".form").valid();
+            if(ValidForm) {
+                tdc_tua.EmailOptInSetupCntrlr.submit(getObject(), contactfld, leadfld, accountfld, function(result, event) {
+                    if (event.status && result != null) {
+                        //call notification method
+                        showNotification('success', config.successMessage);
+                    } else {
+                        showNotification('error', config.errorMessage);
+                    }
+                });
+            }
+        });
+
+        //function saveAndPreview() {
+        $("body").on("click", ".saveAndPreview", function() {
+            var contactfld = document.getElementById('{!$Component.ContactField}').value,
+                leadfld = document.getElementById('{!$Component.LeadField}').value,
+                accountfld = document.getElementById('{!$Component.AccountField}').value;
+            generateUrl();    
+            
+            var ValidForm = $(".form").valid();
+            if(ValidForm) { 
+                tdc_tua.EmailOptInSetupCntrlr.submitpreview(getObject(), contactfld, leadfld, accountfld, function(result, event) {
+                    if (event.status && result != null) {
+                        //call notification method       
+                        showNotification('copy', config.copyMessage);
+                        window.location.href = config.previewPageLink;
+                    } else {
+                        showNotification('error', config.errorMessage);
+                    }
+                });
+            }
+        });
+
+
+        // function to reset all the form with the default value using the above defaultObject
+
+        //function resetDefaults() {
+        $("body").on("click", ".resetDefaults", function() {
+            //console.log(getObject());
+            for (var property in defaultObject) {
+                if (defaultObject.hasOwnProperty(property)) {
+                    if (property == "Logo_base64") {
+                        $('#img-wrapper').attr('src', '');
+                        $('.img-div, .logo-image').hide();
+                        $(".upload-image").show();
+                        defaultObject[property] = '';
+                    } else if (property == "Unsubscribe_contentText") {
+                        CKEDITOR.instances['{!$Component.Unsubscribe_contentText}'].setData(defaultObject[property]);
+                    // } else if(property == "Feedback_require" || property == "Resubscribe_require") {
+                    //     document.getElementById(property).checked = defaultObject[property];
+                    } else {
+                         document.getElementById(property).value = defaultObject[property];
+                    }
+                }
+                logoImage = '';
+                $("#imgInp").val('');
+            }
+
+            $('.jscolor').each(function() {
+                //console.log($(this).val());
+                //var colorString = $(this).val();
+                $(this)[0].jscolor.fromString($(this).val());
+            }); 
+
+            console.log(defaultObject);
+            $(".form").valid();
+
+            //called save method with the default values
+            tdc_tua.EmailOptInSetupCntrlr.submit(defaultObject, "tdc_tua__Email_Subscribe__c", "tdc_tua__Email_Subscribe__c", "tdc_tua__Email_Subscribe__pc", function(result, event) {
+                if (event.status && result != null) {
+                    // notification method
+                    showNotification('success', config.successMessage);
+                    $("#imgInp").val('');
+                    $('#img-wrapper').attr('src', '').hide();
+                    //logoImage = '';
+                    //$(".upload-image").hide();
+                    //$(".logo-image").hide();
+                    location.reload();   
+                    //imgUpload();
+                } else {
+                    showNotification('error', config.errorMessage);
+                }
+            });
+        });
+
+
+        //Create and return a new object with the updated data from all the fields
+        function getObject() {
+            //copy default object 
+            var newObj = JSON.parse(JSON.stringify(defaultObject));
+            
+            //update the default object with the updated functionality 
+            for (var property in newObj) {
+                if (newObj.hasOwnProperty(property)) {
+                    // handle checkboxes
+                    //console.log(property)
+                    if (property == "Logo_base64") {
+                        newObj[property] = logoImage;
+                    } else if (property == "Unsubscribe_contentText") {
+                        newObj[property] = CKEDITOR.instances['{!$Component.Unsubscribe_contentText}'].getData();
+
+                    // } else if (property == "Feedback_require" || property == "Resubscribe_require") {
+                    //     newObj[property] = document.getElementById(property).checked;
+
+                    } else {
+                        newObj[property] = document.getElementById(property).value;
+                    }
+                }
+            }
+            console.log(newObj);
+            return newObj;
+        }
+
+        function extendTrial() {
+            tdc_tua.EmailOptInSetupCntrlr.extendTrial(function(result,event){
+              if (event.status) {
+                  if (result == 'Success') {
+                      console.log(result);
+                      location.reload();
+                  }
+              } 
+              
+            });
+        }
+
+        //function to show the notification after we call a method
+        function showNotification(type, message) {
+            $(".copy-alert .notify__content").removeClass("success error copy").addClass(type).html("<h2>"+message+"<h2>");
+            $(".copy-alert").fadeIn();
+            setTimeout(function() {
+                $(".copy-alert").fadeOut();
+            }, config.notificationTime);
+        }
+
+        $(function() {
+            if ($(".resubscribeCheckbox").is(":checked")) {
+                $('.resubscribePanel').addClass('active');
+            }
+
+            if ($(".feedbackCheckbox").is(":checked")) {
+                $('.feedbackPanel').addClass('active');
+            }
+
+            $('.resubscribeCheckbox').click(function() {
+                if (this.checked)
+                    $('.resubscribePanel').addClass('active');
+                else
+                    $('.resubscribePanel').removeClass('active');
+            });
+
+            $('.feedbackCheckbox').click(function() {
+                if (this.checked)
+                    $('.feedbackPanel').addClass('active');
+                else
+                    $('.feedbackPanel').removeClass('active');
+            });
+        });
+
+
+
+        function generateUrl() {
+            var SiteName = document.getElementById('SiteURL').value;
+            SiteName = SiteName.trim();
+            var urlcon = '/apex/tdc_tua__EmailOptInPage?Id={' + '!' + 'Contact.Id}';
+            var urllead = '/apex/tdc_tua__EmailOptInPage?Id={' + '!' + 'Lead.Id}';
+            var urlacc = '/apex/tdc_tua__EmailOptInPage?Id={' + '!' + 'Account.Id}';
+            
+                
+            if (SiteName != '' && SiteName != null ) {
+                console.log(SiteName.length);
+                var lastChar = SiteName.charAt(SiteName.length-1);
+                if(lastChar == '/'){
+                    SiteName = SiteName.substring(0, SiteName.length - 1);
+                }else {}
+
+                var Sitecon = SiteName + urlcon;
+                var Sitelead = SiteName + urllead;
+                var Siteacc = SiteName + urlacc;
+                document.getElementById('urlcontact').value = Sitecon;
+                document.getElementById('urllead').value = Sitelead;
+                document.getElementById('urlaccount').value = Siteacc;
+                document.getElementById('copycon').disabled = false;
+                document.getElementById('copylead').disabled = false;
+                document.getElementById('copyacc').disabled = false;
+
+                tdc_tua.EmailOptInSetupCntrlr.Urlsetup(SiteName, Sitecon, Sitelead, Siteacc, function(result, event) {
+                    if (event.status) {
+                        if (result == 'success') {
+                            return null;
+                        }
+                    }
+
+                });
+            } else {
+                SiteName = '';
+                urlcon = '';
+                urllead = '';
+                urlacc = '';
+                
+                document.getElementById('urlcontact').value = urlcon;
+                document.getElementById('urllead').value = urllead;
+                document.getElementById('urlaccount').value = urlacc; 
+                document.getElementById('copycon').disabled = true;
+                document.getElementById('copylead').disabled = true;
+                document.getElementById('copyacc').disabled = true;
+
+                tdc_tua.EmailOptInSetupCntrlr.Urlsetup(SiteName, urlcon, urllead, urlacc, function(result, event) {
+                    if (event.status) {
+                        if (result == 'success') {
+                            return null;
+                        }
+                    }
+
+                });
+            }
+        }
+
+        function copyToClipboard(text) {
+            var SiteName = document.getElementById('SiteURL').value;
+            if (SiteName != '' && SiteName != null) {
+                if (window.clipboardData && window.clipboardData.setData) {
+                    // IE specific code path to prevent textarea being shown while dialog is visible./^ *$/.test(SiteName) == false
+                    return clipboardData.setData("Text", text);
+                } else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+                    var textarea = document.createElement("textarea");
+                    textarea.textContent = text;
+                    textarea.style.position = "fixed"; // Prevent scrolling to bottom of page in MS Edge.
+                    document.body.appendChild(textarea);
+                    textarea.select();
+
+                    // call notification method
+                    showNotification('copy', config.copyMessage);
+
+                    try {
+                        return document.execCommand("copy"); // Security exception may be thrown by some browsers.
+                    } catch (ex) {
+                        console.warn("Copy to clipboard failed.", ex);
+                        return false;
+                    } finally {
+                        document.body.removeChild(textarea);
+                    }
+                }
+            } else {
+                //document.getElementById('SiteURL').value = '';
+            }
+        }
+        
+
+        $('#img-wrapper').load( function(e) {
+            $(this).show();
+        });
+
+
+        $("#imgInp").change(function() {
+            //alert('method called');
+            imgUpload();
+        });
+        
+        
+        
+    
+        $("body").on("click", ".copy-btn", function() {
+            var value = $(this).parent().find('.slds-input').val();
+            copyToClipboard(value);
+        })
+    
+        
+        function imgUpload() {
+            //alert('method called2');
+            //Get reference of FileUpload.
+            var fileUpload = $("#imgInp")[0];
+            //Check whether the file is valid Image.
+            //var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(.jpg|.png|.gif|.jpeg)$");
+            var regex = new RegExp("(.jpg|.png|.gif|.jpeg)$");
+            //var regex = new RegExp("/[\w-]+\.(jpg|png|txt)/g");
+            console.log("filename>>> "+ fileUpload.value.toLowerCase());
+            if (regex.test(fileUpload.value.toLowerCase())) {
+                //Check whether HTML5 is supported.
+                if (typeof (fileUpload.files) != "undefined") {
+                    //Initiate the FileReader object.
+                    var reader = new FileReader();
+                    //Read the contents of Image File.
+                    reader.readAsDataURL(fileUpload.files[0]);
+                    reader.onload = function (e) {
+                        //Initiate the JavaScript Image object.
+                        var image = new Image();
+                        //Set the Base64 string return from FileReader as source.
+                        image.src = e.target.result;
+                        image.onload = function () {
+                            //Determine the Height and Width.
+                            console.log($(this).size());
+                            var height = this.height;
+                            var width = this.width;
+                            // if (height > 100 || width > 250) {
+                            //     alert("Height and Width must not exceed 100px.");
+                            //     return false;
+                            // }
+
+                            if(document.getElementById("imgInp").files[0].size > 50000) {
+                                $('.logo-error').css({
+                                    'color' : 'red'
+                                }).text('Logo should not exceed 50KB.').fadeIn();
+                                $("#imgInp").val('');
+                                //alert("Image must not exceed 100KB.");
+                                return false;   
+                            }
+                            $(".logo-image").show();
+                            $(".upload-image").hide();
+                            logoImage =  reader.result;
+                            logoImage = logoImage.replace('data:image/png;base64,', '');
+                            logoImage = logoImage.replace('data:image/jpeg;base64,', '');
+                            logoImage = logoImage.replace('data:image/jpg;base64,', '');
+                            logoImage = logoImage.replace('data:image/gif;base64,', '');
+                            console.log("logoImage>>>",logoImage)
+                            $('.logo-error').fadeOut();
+                            $('#img-wrapper').attr('src', e.target.result);
+                            $('.img-div').css('display', 'block');
+                            return true;
+                        };
+                    }
+                } else {
+                    //alert("This browser does not support HTML5.");
+                    $('.logo-error').css({
+                        'color' : 'red'
+                    }).text('This browser does not support HTML5.').fadeIn();
+                    return false;
+                }
+            } else {
+                //alert("Please select a valid Image file.");
+                $('.logo-error').css({
+                        'color' : 'red'
+                    }).text('Please select a valid Image file.').fadeIn();
+                return false;
+            }
+        }
+        
+    </script>
+
+    <script type="text/javascript">
+        $(function() {
+
+            var value2 = $("#SiteURL").val();
+            if(value2 != null){
+             value2 = value2.trim();
+            }
+            if(value2 != "" && value2 != null) {
+                document.getElementById('copycon').disabled = false;    
+                document.getElementById('copylead').disabled = false;
+                document.getElementById('copyacc').disabled = false;
+            }
+
+            var attachment = "{!objattach.Id}";
+            if(attachment != "") {
+                $('.img-div').show();
+            }
+
+            $('.img-div a').click(function() {
+                $("#imgInp").val('');
+                $('#img-wrapper').attr('src', '').hide();
+                logoImage = '';
+                $('.img-div').fadeOut();
+                $(".upload-image").show();
+                $(".logo-image").hide();
+            });
+        })
+    </script>
+    </apex:outputPanel>
+</body>
+
+</html>
+</apex:form>
+</apex:page>

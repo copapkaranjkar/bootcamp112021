@@ -1,0 +1,607 @@
+<apex:page controller="tdc_tua.EmailOptInCntrl" standardStylesheets="false" showHeader="false" sidebar="false" id="pge" cache="false">
+    <apex:form id="formID">
+        <html lang="en">
+
+        <head>
+            <meta charset="utf-8" />
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <title>Subscribe Email</title>
+            <apex:stylesheet value="{!URLFOR($Resource.tdc_tua__Optout_SR, 'css/bootstrap.min.css')}" />
+            <!--[if lt IE 9]>
+<apex:includeScript value="{!URLFOR($Resource.Optout_SR, 'js/html5shiv.min.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.Optout_SR, 'js/respond.min.js')}"/>
+<![endif]-->
+            <apex:stylesheet value="{!URLFOR($Resource.tdc_tua__Optout_SR, 'css/Josefin.css')}" />
+            <link href="https://fonts.googleapis.com/css?family={!JSINHTMLENCODE(objUnsubscribe.Title_Font_Family__c)}|{!JSINHTMLENCODE(objUnsubscribe.Body_Font_Family__c)}" rel="stylesheet" />
+            <!-- <link href="https://fonts.googleapis.com/css?family={!objsetup.Title_Font_Family__c} | {!objsetup.Body_Font_Family__c}" rel="stylesheet" /> -->
+            <style type="text/css">
+            body {
+                background-color: #efefef;
+                font-family: '{!JSINHTMLENCODE(objUnsubscribe.Body_Font_Family__c)}', cursive;
+                font-weight: 400;
+                text-rendering: optimizeLegibility;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                color: #000;
+                line-height: 200%;
+                font-size: 18px;
+            }
+            
+            a {
+                color: #ff4a4a;
+            }
+            
+            a:hover,
+            a:focus {
+                color: #ff4a4a;
+            }
+            
+            .btn-site {
+                padding: 1.5rem 3rem;
+                border-radius: 50px;
+            }
+            
+            .btn-main {
+                padding: 1.5rem 3rem;
+                transition: all 0.2s ease;
+                line-height: 1.5rem;
+                border-radius: 10rem;
+            }
+            
+            .btn-main-sub {
+                padding: 2.5rem 5rem;
+                transition: all 0.2s ease;
+                line-height: 1.5rem;
+                border-radius: 10rem;
+            }
+            
+            header {
+                padding-top: 2em;
+                padding-bottom: 2em;
+                position: relative;
+                z-index: 99;
+            }
+            
+            header h1 {
+                color: #666;
+                font-weight: 400;
+                margin: 0;
+                font-size: 36px;
+                line-height: 48px;
+            }
+            
+            header .btn-section {
+                text-align: right;
+            }
+            
+            .message {
+                background: rgb(105, 204, 109);
+                color: #fff;
+                display: none;
+            }
+            
+            .message h3 {
+                margin: 2rem 0;
+                font-weight: normal;
+                font-size: 20px;
+                text-align: center;
+            }
+            
+            footer {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+            
+            footer p {
+                margin: 0;
+            }
+            
+            .content h2 {
+                margin: 5rem 0;
+                text-align: center;
+                font-family: '{!JSINHTMLENCODE(objUnsubscribe.Title_Font_Family__c)}', cursive;
+            }
+           
+            .content h2 span {
+                font-size: 120%;
+                display: block;
+                margin-top: 2rem;
+            }
+            
+            .description {
+                font-size: 16px;
+                line-height: 150%;
+                color: #888888;
+                text-align: center;
+            }
+            
+            .buttonSec {
+                text-align: center;
+                padding: 0rem 0 4rem;
+                position: relative;
+                z-index: 9
+            }
+            
+            .buttonSec .btn-main {
+                padding: 2.5rem 5rem;
+                font-size: 2rem;
+            }
+            
+            .subscribe_sec{
+                width: 100%;
+                max-width: 450px;
+                margin: 5rem auto;
+            }
+            .subscribe_sec input,
+            .subscribe_sec select,
+            .subscribe_sec textarea {
+                font-family: inherit;
+                font-size: inherit;
+                line-height: inherit;
+                display: block;
+                width: 100%;
+                border: 2px solid #ddd;
+                padding: 1rem 2rem;
+                height: 51px;
+                margin: 0rem auto;
+                border-radius: 6px;
+                color: #666;
+                transition: all .2s ease;
+                z-index: 9;
+                position: relative;
+            }
+            
+            
+            .subscribe_sec input:focus {
+                border-color: #ff4a4a
+            }
+            
+            .subscribe_sec input:focus,
+            .subscribe_sec textarea:focus,
+            .subscribe_sec select:focus {
+                outline: 0;
+            }
+            .subscribe_sec label{
+                text-align: left;
+                font-size: 16px;
+                margin: 1rem auto 0;
+                font-weight: 400;
+            }
+            
+            .logo-img {
+                max-width: 250px;
+                max-height: 100px;
+            }
+            
+            .description {
+                line-height: 200%;
+            }
+            .trial_img {
+                background: url(/resource/tdc_tua__Optout_SR/img/360-logo.png) no-repeat;
+                position: absolute;
+                left: 0;
+                top:0;
+                bottom: 0;
+                right: 0;
+                z-index: 9;
+                width: 100%;
+                height: 100%;
+                opacity: 0.2;
+                transform: rotate(-45deg);
+                background-size: 480px;
+                background-position: 60% 40%;
+            }
+
+            .trial_alert .msg_sec{
+                background: #405763;
+                position: fixed;
+                width: 100%;
+                z-index: 100;
+
+            }
+            .trial_alert .trial_msg{
+                margin: 0;
+                padding: 0;
+                font-size: 1.25em;
+                text-align: center;
+                color: #fff;
+                padding: 2rem;
+                display: block;
+            }
+
+            .trialpadd{
+                padding-top: 8rem
+            }
+
+            @media(max-width: 1024px) {
+                .trial_alert .trial_msg {
+                    font-size: 1em;
+                }
+            }
+
+            @media(max-width: 767px) {
+                .trial_alert .trial_msg {
+                    font-size: 1em;
+                    padding: 1rem 0;
+                }
+
+                .trialpadd{
+                    padding-top: 12rem
+                }
+            }
+
+
+            .trial_msg{
+                display: none;
+            }
+            .trial_alert .trial_msg a{
+                color: #fff;
+                text-decoration: underline;
+            }
+            
+            .trial_input{
+                background-color: transparent !important;
+            }
+            .subscribSec{
+                position: relative;
+                overflow: hidden;
+            }
+            .MallingText{
+                font-size: 34px;
+                color: rgb(51, 51, 51);
+                padding: 20rem 0;
+                text-align: center;
+                /*font-family: '{!JSINHTMLENCODE(objUnsubscribe.Body_Font_Family__c)}', cursive;*/
+                font-family: 'Bad Script', cursive;
+                background: #fff;
+                line-height: 1.5;
+            }
+            .MallingText img{
+                margin-bottom: 5px
+            }
+            .subscribe_sec .form-group{
+                margin-bottom: 40px
+            }
+            @media (max-width: 767px) {
+                header .btn-section {
+                    text-align: center;
+                    padding-top: 20px;
+                }
+                header .logo-section {
+                    text-align: center;
+                }
+            }
+            </style>
+        </head>
+
+        <body>
+            <apex:outputPanel rendered="{!If(trialperiod == true ,false,true)}">
+                <label> You Have No Access To The Page.</label>
+                <label> Please Contact Support </label>
+            </apex:outputPanel>
+
+            <apex:outputPanel rendered="{! If(trialperiod == true ,true,false) }">
+                <apex:actionFunction name="subscribMe" action="{!subscribeMe}" reRender="feedback" oncomplete="showMessage('Unsubscribed successfully!')">
+                </apex:actionFunction>
+                <!-- check for trial period  -->
+                <apex:outputPanel rendered="{!if(status == 'Trial' , true, false)}">
+                    <section class="trial_alert">
+                        <div class="container msg_sec">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h2 class="trial_msg">This page is for trial purpose only.</h2>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h2 class="trial_msg">Powered by <a href="https://appexchange.salesforce.com/listingDetail?listingId=a0N3A00000ErE0OUAV">360 Email Unsubscribe App</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </apex:outputPanel>
+
+
+                <header class="{! If(status == 'Trial' ,'trialpadd','') }">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-12 logo-section">
+                                <apex:outputPanel rendered="{!if(status != 'Trial' , true, false)}">
+                                    <apex:outputPanel rendered="{!(objattach.Id != null || objattach.Id != '')}">
+                                        <a href="#"><img class="logo-img" src="{!siturl}/servlet/servlet.FileDownload?file={!objattach.Id}" /></a>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!(objattach.Id == null || objattach.Id == '')}">
+                                        <h1 id="header_title">
+                                            <apex:outputText value="{!objunsubscribe.tdc_tua__Header_Title__c}" />
+                                        </h1>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+
+                                <apex:outputPanel rendered="{!if(status == 'Trial' , true, false)}" >
+                                    <img class="logo-img" src="/resource/tdc_tua__Optout_SR/img/360-logo.png" style="max-width: 150px;" />
+                                </apex:outputPanel>
+                            </div>
+                            <div class="col-sm-6 col-xs-12 btn-section">
+                                <apex:outputLink value="{!objunsubscribe.tdc_tua__Header_Button_Link__c}" styleclass="btn btn-site Header_Button">
+                                    <apex:outputText value="{!objunsubscribe.tdc_tua__Header_Button_Text__c}" styleclass="Header_Button_Text" />
+                                </apex:outputLink>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!-- <section class="message">
+                    <div class="container">
+                        <h3>You are successfully unsubscribed!</h3>
+                    </div>
+                </section> -->
+                <!-- <apex:outputPanel rendered="{!IF((objCon[contactFieldname] == true || objlead[leadFieldname] == true), false, true)}"> -->
+                <div class="MallingText" style="display: none;">
+                    <!-- <img src="/resource/RightIcon/check.png" /> -->
+                    <apex:image url="{!$Resource.tdc_tua__RightIcon}" />
+                    <div>
+                        You have successfully subscribed <br/> to our mailing list!
+                    </div>
+                    
+                </div>
+                <section class="subscribSec" style="display: none">
+                <!-- check for trial period -->
+                    <apex:outputPanel rendered="{!if(status == 'Trial' , true, false)}">
+                        <div class="trial_img"></div>
+                    </apex:outputPanel>
+                    
+                    <div class="container">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h2 class="unsubscribe_heading"><apex:outputText value="{!objunsubscribe.tdc_tua__Unsubscribe_Heading_Text__c}" /><br />
+                                        <span><apex:outputText value="{!objunsubscribe.tdc_tua__Unsubscribe_Subheading_Text__c}" /></span>
+                                    </h2>
+
+                                    <div class="description"> </div>
+                                    
+                                    <div class="subscribe_sec">
+                                        <div class="form-group">
+                                            <apex:inputText value="{!firstName}" html-placeholder="First Name"/>    
+                                        </div>
+                                         <div class="form-group">
+                                            <apex:inputText required="true" value="{!lastName}"  html-placeholder="Last Name"/>    
+                                        </div>
+                                        <div class="form-group">
+                                           <apex:inputText required="true" value="{!email}"  html-placeholder="Email"/>    
+                                        </div>
+                                        <!-- <div class="buttonSec">
+                                            <a href=" javascript:void(0)" class="btn btn-main Unsubscribe_Button_Text" onClick="gettingfeedback();">
+                                                Subscribe
+                                            </a>
+                                        </div> -->
+                                    </div>
+                                    <div class="buttonSec">
+                                        <a href=" javascript:void(0)" class="btn btn-main Unsubscribe_Button_Text" onClick="subscribMe();">
+                                            <apex:outputText value="{!objunsubscribe.tdc_tua__Unsubscribe_Button_Text__c}" styleclass="" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <footer>
+                    <div class="container">
+                        <img src="" />
+                        <p class="copyright">
+                            <apex:outputText value="{!objunsubscribe.tdc_tua__Footer_Content__c}" />
+                        </p>
+                    </div>
+                </footer>
+            </apex:outputPanel>
+            
+            <apex:includeScript value="{!URLFOR($Resource.tdc_tua__Optout_SR, 'js/jquery.min.js')}" />
+            
+            <script>
+            var subscription = "{!isSubscribed}";
+
+            if (subscription == "true") {
+                //$('.resub_sec').show();
+                $('.subscribSec').hide();
+                $('.MallingText').show();
+            } else {
+                $('.subscribSec').show();
+                $('.MallingText').hide();
+                //$('.resub_sec').hide();
+            }
+
+            function showMessage(content) {
+                //$('.MallingText').show();
+                $(".message h3").text(content)
+                $(".message").fadeIn();
+                setTimeout(function() {
+                    location.reload();
+                }, 1000)
+            }
+
+            $(function() {
+                    var content = '{!JSENCODE(objunsubscribe.tdc_tua__Content__c)}';
+                    var feedbackreq = '{!JSENCODE(IF(objunsubscribe.tdc_tua__Is_Feedback_Required__c == true,"true", "false"))}';
+                    if (content != '') {
+                        $(".description").html(content);
+                    }
+                    if (document.getElementById('feedbacksection') != null) {
+                        if (feedbackreq == "true") {
+                            document.getElementById('feedbacksection').style.display = 'block';
+                        } else {
+                            document.getElementById('feedbacksection').style.display = 'none';
+                        }
+                    }
+                })
+            </script>
+            <script>
+                var el = $('#header_title');
+                var el2 = $('.Header_Button');
+                var el3 = $('.Header_Button_Text');
+                var el4 = $('.Unsubscribe_Button_Text');
+                var el5 = $('.Resubscribe_button_Text');
+                var el6 = $('header');
+                var el7 = $('footer');
+                var el8 = $('.copyright');
+                var el9 = $('.description');
+                var el10 = $('.subscribSec');
+                var el11 = $('.unsubscribe_heading');
+                var el12 = $('.unsubscribe_heading > span');
+                var el13 = $('.btn-feedback');
+                var el14 = $('.feedback_sec');
+                var el15 = $('.feedback_heading');
+                var el16 = $('.feedback_heading > span');
+                var el17 = $('.resub_sec');
+                var el18 = $('.resub_sec h2');
+                var el19 = $('.resub_sec h2 > span');
+
+                var titleFontSize               = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Header_Font_Size__c))}'; //integer
+                var headerButtonFontSize        = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Header_Button_Font_Size__c))}'; //integer
+                var unsubsButtonFontSize        = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Unsubscribe_Font_Size__c))}'; //integer
+                var feedbackButtonFontSize      = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Feedback_Button_Font_Size__c))}'; //integer
+                var resubFontSize               = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Resubscribe_Font_Size__c))}'; //integer
+                var footerFontSize              = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Footer_Font_Size__c))}'; //integer
+                var descriptionFontSize         = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Content_Font_Size__c))}'; //integer
+                var unsubHeadingFontSize        = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Unsubscribe_heading_Font_Size__c))}'; //integer
+                var unsubSubHeadingFontSize     = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Unsubscribe_Subheading_Font_Size__c))}'; //integer
+                var feedbackHeadingFontSize     = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Feedback_Heading_Font_Size__c))}'; //integer
+                var feedbackSubHeadingFontSize  = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Feedback_Subheading_Font_Size__c))}'; //integer
+                var resubHeadingFontSize        = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Resubscribe_Heading_Font_Size__c))}'; //integer
+                var resubSubHeadingFontSize     = '{!JSINHTMLENCODE(TEXT(objUnsubscribe.tdc_tua__Resubscribe_Subheading_Font_Size__c))}'; //integer
+
+                var color                       = '{!JSENCODE(objUnsubscribe.tdc_tua__Header_Title_Color__c)}';
+                var backgroundColor             = '{!JSENCODE(objunsubscribe.tdc_tua__Header_Button_Background_Color__c)}';
+                var color_a                     = '{!JSENCODE(objUnsubscribe.tdc_tua__Header_Button_Font_Color__c)}';
+                var backgroundColor_a           = '{!JSENCODE(objUnsubscribe.tdc_tua__Unsubscribe_Button_Color__c)}';
+                var color_b                     = '{!JSENCODE(objUnsubscribe.tdc_tua__Unsubscribe_Font_Color__c)}';
+                var backgroundColor_b           = '{!JSENCODE(objUnsubscribe.tdc_tua__Resubscribe_Button_Color__c)}';
+                var color_c                     = '{!JSENCODE(objUnsubscribe.tdc_tua__Resubscribe_Font_Color__c)}';
+                var backgroundColor_c           = '{!JSENCODE(objUnsubscribe.tdc_tua__Header_Background_Color__c)}';
+                var backgroundColor_d           = '{!JSENCODE(objUnsubscribe.tdc_tua__Footer_Background_Color__c)}';
+                var color_d                     = '{!JSENCODE(objUnsubscribe.tdc_tua__Footer_Font_Color__c)}';
+                var color_e                     = '{!JSENCODE(objUnsubscribe.tdc_tua__Content_Text_Color__c)}';
+                var backgroundColor_e           = '{!JSENCODE(objUnsubscribe.tdc_tua__Unsubscribe_Background_Color__c)}';
+                var color_f                     = '{!JSENCODE(objUnsubscribe.tdc_tua__Unsubscribe_heading_Font_Color__c)}';
+                var color_g                     = '{!JSENCODE(objUnsubscribe.tdc_tua__Unsubscribe_Subheading_Font_Color__c)}';
+                var color_h                     = '{!JSENCODE(objUnsubscribe.tdc_tua__Feedback_Button_Font_Color__c)}';
+                var backgroundColor_f           = '{!JSENCODE(objUnsubscribe.tdc_tua__Feedback_Button_Background_Color__c)}';
+                var backgroundColor_g           = '{!JSENCODE(objUnsubscribe.tdc_tua__Feedback_Background_Color__c)}';
+                var color_i                     = '{!JSENCODE(objUnsubscribe.tdc_tua__Feedback_Heading_Font_Color__c)}';
+                var color_j                     = '{!JSENCODE(objUnsubscribe.tdc_tua__Feedback_Subheading_Font_Color__c)}';
+                var backgroundColor_k           = '{!JSENCODE(objUnsubscribe.tdc_tua__Resubscribe_Background_Color__c)}';
+                var color_l                     = '{!JSENCODE(objUnsubscribe.tdc_tua__Resubscribe_Heading_Font_Color__c)}';
+                var color_m                     = '{!JSENCODE(objUnsubscribe.tdc_tua__Resubscribe_Subheading_Font_Color__c)}';
+
+                if (!isNaN(titleFontSize)) {
+                    el.css("font-size", titleFontSize + 'px');
+                }
+                if (!isNaN(headerButtonFontSize)) {
+                    el3.css("font-size", headerButtonFontSize + 'px');
+                }
+                console.log("getit"+unsubsButtonFontSize)
+                if (!isNaN(unsubsButtonFontSize)) {
+                    console.log("getit")
+                    el4.css("font-size", unsubsButtonFontSize + 'px');
+                }
+                if (!isNaN(resubFontSize)) {
+                    el5.css("font-size", resubFontSize + 'px');
+                }
+                if (!isNaN(footerFontSize)) {
+                    el8.css("font-size", footerFontSize + 'px');
+                }
+                if (!isNaN(descriptionFontSize)) {
+                    el9.css("font-size", descriptionFontSize + 'px');
+                }
+                if (!isNaN(unsubHeadingFontSize)) {
+                    el11.css("font-size", unsubHeadingFontSize + 'px');
+                }
+                if (!isNaN(unsubSubHeadingFontSize)) {
+                    el12.css("font-size", unsubSubHeadingFontSize + 'px');
+                }
+                if (!isNaN(feedbackButtonFontSize)) {
+                    el13.css("font-size", feedbackButtonFontSize + 'px');
+                }
+                if (!isNaN(feedbackHeadingFontSize)) {
+                    el15.css("font-size", feedbackHeadingFontSize + 'px');
+                }
+                if (!isNaN(feedbackSubHeadingFontSize)) {
+                    el16.css("font-size", feedbackSubHeadingFontSize + 'px');
+                }
+                if (!isNaN(resubHeadingFontSize)) {
+                    el18.css("font-size", resubHeadingFontSize + 'px');
+                }
+                if (!isNaN(resubSubHeadingFontSize)) {
+                    el19.css("font-size", resubSubHeadingFontSize + 'px');
+                }
+
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color)) {
+                    el.css("color", color);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(backgroundColor)) {
+                    el2.css("background-color", backgroundColor);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color_a)) {
+                    el3.css("color", color_a);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(backgroundColor_a)) {
+                    el4.css("background-color", backgroundColor_a);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color_b)) {
+                    el4.css("color", color_b);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(backgroundColor_b)) {
+                    el5.css("background-color", backgroundColor_b);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color_c)) {
+                    el5.css("color", color_c);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(backgroundColor_c)) {
+                    el6.css("background-color", backgroundColor_c);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(backgroundColor_d)) {
+                    el7.css("background-color", backgroundColor_d);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color_d)) {
+                    el8.css("color", color_d);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color_e)) {
+                    el9.css("color", color_e);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(backgroundColor_e)) {
+                    el10.css("background-color", backgroundColor_e);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color_f)) {
+                    el11.css("color", color_f);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color_g)) {
+                    el12.css("color", color_g);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color_h)) {
+                    el13.css("color", color_h);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(backgroundColor_f)) {
+                    el13.css("background-color", backgroundColor_f);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(backgroundColor_g)) {
+                    el14.css("background-color", backgroundColor_g);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color_i)) {
+                    el15.css("color", color_i);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color_j)) {
+                    el16.css("color", color_j);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(backgroundColor_k)) {
+                    el17.css("background-color", backgroundColor_k);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color_l)) {
+                    el18.css("color", color_l);
+                }
+                if (/(^[0-9a-f]{6}$)|(^[0-9a-f]{3}$)|#/i.test(color_m)) {
+                    el19.css("color", color_m);
+                }
+            </script>
+        </body>
+
+        </html>
+    </apex:form>
+</apex:page>

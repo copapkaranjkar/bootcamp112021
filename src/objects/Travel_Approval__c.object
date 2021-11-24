@@ -341,11 +341,6 @@ IMAGE(&quot;/resource/StatusImages/draft.png&quot;, &quot;In-Process&quot;, 20, 
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Travel Approvals</pluralLabel>
-    <recordTypes>
-        <fullName>Test_Deletion</fullName>
-        <active>true</active>
-        <label>Test Deletion</label>
-    </recordTypes>
     <searchLayouts>
         <searchResultsAdditionalFields>Purpose_of_Trip__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Department__c</searchResultsAdditionalFields>

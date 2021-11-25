@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- App Logo URL --></label>
+        <name>tdc_tua__App_Logo_URL__c</name>
+    </fields>
+    <fields>
+        <label><!-- Body Font Family --></label>
+        <name>tdc_tua__Body_Font_Family__c</name>
+    </fields>
+    <fields>
+        <label><!-- Content Background Color --></label>
+        <name>tdc_tua__Content_Background_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Content Font Size --></label>
+        <name>tdc_tua__Content_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Content Text Color --></label>
+        <name>tdc_tua__Content_Text_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Content --></label>
+        <name>tdc_tua__Content__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback Background Color --></label>
+        <name>tdc_tua__Feedback_Background_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback Button Background Color --></label>
+        <name>tdc_tua__Feedback_Button_Background_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback Button Font Color --></label>
+        <name>tdc_tua__Feedback_Button_Font_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback Button Font Size --></label>
+        <name>tdc_tua__Feedback_Button_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback Button Text --></label>
+        <name>tdc_tua__Feedback_Button_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback Heading Font Color --></label>
+        <name>tdc_tua__Feedback_Heading_Font_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback Heading Font Size --></label>
+        <name>tdc_tua__Feedback_Heading_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback Heading Text --></label>
+        <name>tdc_tua__Feedback_Heading_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback Subheading Font Color --></label>
+        <name>tdc_tua__Feedback_Subheading_Font_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback Subheading Font Size --></label>
+        <name>tdc_tua__Feedback_Subheading_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback Subheading Text --></label>
+        <name>tdc_tua__Feedback_Subheading_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Feedback --></label>
+        <name>tdc_tua__Feedback__c</name>
+    </fields>
+    <fields>
+        <label><!-- Footer Background Color --></label>
+        <name>tdc_tua__Footer_Background_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Footer Color --></label>
+        <name>tdc_tua__Footer_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Footer Content --></label>
+        <name>tdc_tua__Footer_Content__c</name>
+    </fields>
+    <fields>
+        <label><!-- Footer Font Color --></label>
+        <name>tdc_tua__Footer_Font_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Footer Font Size --></label>
+        <name>tdc_tua__Footer_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Header Background Color --></label>
+        <name>tdc_tua__Header_Background_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Header Button Background Color --></label>
+        <name>tdc_tua__Header_Button_Background_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Header Button Font Color --></label>
+        <name>tdc_tua__Header_Button_Font_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Header Button Font Size --></label>
+        <name>tdc_tua__Header_Button_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Header Button Link --></label>
+        <name>tdc_tua__Header_Button_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Header Button Text --></label>
+        <name>tdc_tua__Header_Button_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Header Font Size --></label>
+        <name>tdc_tua__Header_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Header Title Color --></label>
+        <name>tdc_tua__Header_Title_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Header Title --></label>
+        <name>tdc_tua__Header_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Feedback Required? --></label>
+        <name>tdc_tua__Is_Feedback_Required__c</name>
+    </fields>
+    <fields>
+        <label><!-- Other Reason For Unsubscription --></label>
+        <name>tdc_tua__Other_Reason_For_Unsubscription__c</name>
+    </fields>
+    <fields>
+        <label><!-- Page Background Color --></label>
+        <name>tdc_tua__Page_Background_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Page Title Color --></label>
+        <name>tdc_tua__Page_Title_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Page Title Font Size --></label>
+        <name>tdc_tua__Page_Title_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Page Title --></label>
+        <name>tdc_tua__Page_Title__c</name>
+    </fields>
+    <fields>
+        <help><!-- Please fill the values in Comma Seperated form --></help>
+        <label><!-- Reason For Unsubscribe --></label>
+        <name>tdc_tua__Reason_For_Unsubscribe__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubscribe Background Color --></label>
+        <name>tdc_tua__Resubscribe_Background_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubscribe Button Color --></label>
+        <name>tdc_tua__Resubscribe_Button_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubscribe Font Color --></label>
+        <name>tdc_tua__Resubscribe_Font_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubscribe Font Size --></label>
+        <name>tdc_tua__Resubscribe_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubscribe Heading Font Color --></label>
+        <name>tdc_tua__Resubscribe_Heading_Font_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubscribe Heading Font Size --></label>
+        <name>tdc_tua__Resubscribe_Heading_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubscribe Heading Text --></label>
+        <name>tdc_tua__Resubscribe_Heading_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubscribe Subheading Font Color --></label>
+        <name>tdc_tua__Resubscribe_Subheading_Font_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubscribe Subheading Font Size --></label>
+        <name>tdc_tua__Resubscribe_Subheading_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubscribe Subheading Text --></label>
+        <name>tdc_tua__Resubscribe_Subheading_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubscribe --></label>
+        <name>tdc_tua__Resubscribe__c</name>
+    </fields>
+    <fields>
+        <label><!-- Resubscribe button Text --></label>
+        <name>tdc_tua__Resubscribe_button_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title Font Family --></label>
+        <name>tdc_tua__Title_Font_Family__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unsubscribe Background Color --></label>
+        <name>tdc_tua__Unsubscribe_Background_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unsubscribe Button Color --></label>
+        <name>tdc_tua__Unsubscribe_Button_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unsubscribe Button Text --></label>
+        <name>tdc_tua__Unsubscribe_Button_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unsubscribe Font Color --></label>
+        <name>tdc_tua__Unsubscribe_Font_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unsubscribe Font Size --></label>
+        <name>tdc_tua__Unsubscribe_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unsubscribe Heading Text --></label>
+        <name>tdc_tua__Unsubscribe_Heading_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unsubscribe Subheading Font Color --></label>
+        <name>tdc_tua__Unsubscribe_Subheading_Font_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unsubscribe Subheading Font Size --></label>
+        <name>tdc_tua__Unsubscribe_Subheading_Font_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unsubscribe Subheading Text --></label>
+        <name>tdc_tua__Unsubscribe_Subheading_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unsubscribe heading Font Color --></label>
+        <name>tdc_tua__Unsubscribe_heading_Font_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unsubscribe heading Font Size --></label>
+        <name>tdc_tua__Unsubscribe_heading_Font_Size__c</name>
+    </fields>
+    <layouts>
+        <layout>Unsubscription Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

@@ -415,4 +415,8 @@
         <apexPage>tdc_tua__EmailOptoutPage</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+    <tabSettings>
+        <tab>tdc_tua__Setup__c</tab>
+        <visibility>Available</visibility>
+    </tabSettings>
 </PermissionSet>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Feedback --></label>
+        <name>tdc_tua__Feedback__c</name>
+    </fields>
+    <fields>
+        <label><!-- Selected Field --></label>
+        <name>tdc_tua__Selected_Field__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>tdc_tua__Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unsubscribe --></label>
+        <name>tdc_tua__Unsubscribe__c</name>
+    </fields>
+</CustomObjectTranslation>

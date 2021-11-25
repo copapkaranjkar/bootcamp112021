@@ -916,7 +916,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Setup</pluralLabel>
-    <searchLayouts />
+    <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

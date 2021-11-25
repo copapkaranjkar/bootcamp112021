@@ -178,7 +178,7 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Departments</pluralLabel>
-    <searchLayouts />
+    <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

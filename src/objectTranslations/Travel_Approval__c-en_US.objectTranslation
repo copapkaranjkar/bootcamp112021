@@ -73,6 +73,10 @@
         <label><!-- Trip Start Date --></label>
         <name>Trip_Start_Date__c</name>
     </fields>
+    <fields>
+        <label><!-- check retrieve commit feature --></label>
+        <name>check_retrieve_commit_feature__c</name>
+    </fields>
     <layouts>
         <layout>Travel Approval Layout</layout>
         <sections>

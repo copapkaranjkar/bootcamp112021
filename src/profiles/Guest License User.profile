@@ -13727,6 +13727,10 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
+        <tab>Department__c</tab>
+        <visibility>Hidden</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Knowledge__kav</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>

@@ -244,7 +244,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Account.X00036510_1__c</field>
         <readable>true</readable>
     </fieldPermissions>

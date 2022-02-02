@@ -338,6 +338,26 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
+        <fullName>X00036510_1__c</fullName>
+        <description>field 1 created to test delta profile and PS deployment</description>
+        <externalId>false</externalId>
+        <label>00036510-1</label>
+        <length>18</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>X00036510_2__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>field 2 created to test delta deployment of profile and ps</description>
+        <externalId>false</externalId>
+        <label>00036510-2</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>tdc_tua__Optout_Feedback__c</fullName>
         <deprecated>false</deprecated>
         <externalId>false</externalId>

@@ -257,6 +257,7 @@
     </fields>
     <fields>
         <fullName>Description</fullName>
+        <inlineHelpText>Updating the description to test rollback</inlineHelpText>
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
